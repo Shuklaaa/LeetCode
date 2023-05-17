@@ -29,31 +29,31 @@ class GFG {
 class Solution {
     static int makeProductOne(int[] arr, int N) {
         // code here
-        int zeros = 0, neg = 0, steps = 0;
+        int neg = 0, z = 0, steps = 0;
+        
         for(int i = 0; i < N; i++){
             if(arr[i] == 0){
-                zeros++;
+                z++;
             }
             
             else if(arr[i] > 0){
                 steps += (arr[i] - 1);
             }
             
-            else{
+            else {
                 neg++;
                 steps += (-arr[i] - 1);
             }
         }
         
         if(neg % 2 == 0){
-            steps += zeros;
+            steps += z;
         }
         else {
-            if(zeros > 0){
-                steps += zeros;
+            if(z > 0){
+                steps += z;
             }
-            
-            else {
+            else{
                 steps += 2;
             }
         }
