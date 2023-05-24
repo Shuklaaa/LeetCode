@@ -40,12 +40,10 @@ class Solution {
         
         for(int i = 0; i < n; i++){
             if(arr[i] > largest){
+                secondLargest = largest;
                 largest = arr[i];
             }
-        }
-        
-        for(int i = 0; i < n; i++){
-            if(arr[i] > secondLargest && arr[i] != largest){
+            else if(arr[i] < largest && arr[i] > secondLargest){
                 secondLargest = arr[i];
             }
         }
