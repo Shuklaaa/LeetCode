@@ -10,7 +10,7 @@ class Solution {
           if(nums[i]-nums[i-1]==1)
           {
               cur++;
-              if(cur>l) l=cur;
+              l = Math.max(cur, l);
           }
         else  if(nums[i]-nums[i-1]!=0)
           {
