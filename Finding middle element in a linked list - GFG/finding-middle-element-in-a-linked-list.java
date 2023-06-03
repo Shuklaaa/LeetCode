@@ -59,22 +59,13 @@ class Solution
     int getMiddle(Node head)
     {
          // Your code here.
-         if(head == null || head.next == null){
-            return head.data;
-        }
-        int size = 0;
-        Node curr = head;
-        while(curr != null){
-            curr = curr.next;
-            size++;
-        }
-        int mid = size / 2;
-        int i = 1;
-        Node prev = head;  //gives acces to node previous of the middle node
-        while(i <= mid){
-            prev = prev.next;
-            i++;
-        }
-        return prev.data;
+         Node slow = head;
+         Node fast = head;
+         
+         while(fast != null && fast.next != null){
+             slow = slow.next;
+             fast = fast.next.next;
+         }
+         return slow.data;
     }
 }
