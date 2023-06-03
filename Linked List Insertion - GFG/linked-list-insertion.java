@@ -87,7 +87,7 @@ class Solution
         }
         
         curr.next = nn;
-        nn = null;
+        nn.next = null;
         return head;
     }
 }
