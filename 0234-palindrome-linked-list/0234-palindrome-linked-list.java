@@ -14,22 +14,24 @@ class Solution {
             return true;
         }
         
-        ListNode mid = findMid(head);  //IT WILL TEL US THE END OF FIRST HALF
-        ListNode secondHalfStart = reverse(mid.next);
+        ListNode mid = findMid(head);
+        ListNode reverse = findRev(mid.next);  //this is the starting of second half
         
         ListNode firstHalfStart = head;
+        ListNode secondHalfStart = reverse;
+        
         while(secondHalfStart != null){
-            if(firstHalfStart.val != secondHalfStart.val){
+            if(secondHalfStart.val != firstHalfStart.val){
                 return false;
             }
-            firstHalfStart = firstHalfStart.next;
             secondHalfStart = secondHalfStart.next;
+            firstHalfStart = firstHalfStart.next;
         }
-        
         return true;
     }
     
-    public ListNode findMid(ListNode head){
+    static ListNode findMid(ListNode head){
+
         ListNode slow = head;
         ListNode fast = head;
         
@@ -40,16 +42,16 @@ class Solution {
         return slow;
     }
     
-    public ListNode reverse(ListNode head){
-        ListNode prev = null;
-        ListNode curr = head;
+    static ListNode findRev(ListNode head){
         
-        while(curr != null){
-            ListNode next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+        ListNode newHead = null;
+        while(head != null){
+            ListNode next = head.next;
+            head.next = newHead;
+            newHead = head;
+            head = next;
         }
-        return prev;
+        
+        return newHead;
     }
 }
