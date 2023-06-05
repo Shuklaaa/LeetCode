@@ -58,22 +58,19 @@ class Solution {
     Node deleteMid(Node head) {
         // This is method only submission.
         // You only need to complete the method.
-        int size = 0;
-        Node curr = head;
-        while(curr != null){
-            curr = curr.next;
-            size++;
+        if(head == null || head.next == null){
+            return null;
         }
-        int mid = size / 2;
-        int i = 1;
         
-        Node prev = head;
-        while(i < mid){
-            prev = prev.next;
-            i++;
+        Node slow = head;
+        Node fast = head.next.next;
+        
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        prev.next = prev.next.next;
         
+        slow.next = slow.next.next;
         return head;
     }
 }
