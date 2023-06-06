@@ -10,31 +10,32 @@
  */
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode l1 = list1;
-        ListNode l2 = list2;
-        ListNode dummy = new ListNode(0);
-        ListNode temp = dummy;
-        
-        while(l1 != null && l2 != null){
-            if(l1.val <= l2.val){
-                temp.next = new ListNode(l1.val);
-                l1 = l1.next;
+        if(list1== null){
+            return list2;
+        }   
+        if(list2 == null){ 
+            return list1;
+        }
+        if(list1.val>list2.val){  // if value of list1 is greater than value of list2, we swap the two, since we place result at l1, which has to contain the smaller value of the two linked list (since the next value in the linked list would be smaller of the two bigger values)
+            ListNode temp = list1; // swapping l1 and l2 using a temp variable
+            list1 = list2;
+            list2 = temp;
+        }
+        ListNode res = list1;
+        while(list1 !=null && list2!=null){
+            ListNode tmp = null;
+            while(list1 !=null && list1.val <=list2.val ){
+                tmp = list1;
+                list1 = list1.next;
             }
-            
-            else{
-                temp.next = new ListNode(l2.val);
-                l2 = l2.next;
-            }
-            temp = temp.next;
+            tmp.next = list2;
+
+            //swap 
+            ListNode temp = list1;  // as l1>l2, we swap the values
+            list1 = list2;
+            list2 = temp;
+
         }
-        
-        if(l1 == null){
-            temp.next = l2;
-        }
-        else if(l2 == null){
-            temp.next = l1;
-        }
-        
-        return dummy.next;
+        return res;
     }
 }
