@@ -25,11 +25,9 @@ class GFG
 class Solution{
     static String oddEven(int N){
         // code here
-        if(N % 2 == 0){
+        if ((N & 1) == 0)
             return "even";
-        }
-        else{
+        else
             return "odd";
-        }
     }
 }
