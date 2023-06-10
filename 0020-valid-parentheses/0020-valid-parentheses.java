@@ -2,9 +2,10 @@ class Solution {
     public boolean isValid(String s) {
         Stack<Character> st = new Stack<Character>();
         
-        for (char it : s.toCharArray()){
-            if(it == '(' ||  it == '{' || it == '['){
-                st.push(it);
+        int n = s.length();
+        for(int i = 0; i < n; i++){
+            if(s.charAt(i) == '(' || s.charAt(i) == '{' || s.charAt(i) == '['){
+                st.push(s.charAt(i));
             }
             else{
                 if(st.isEmpty()){ //it means for an opening bracket it does not have any closing bracket
@@ -12,7 +13,7 @@ class Solution {
                 }
                 
                 char c = st.pop();
-                if((it == ')' && c == '(') || (it == '}' && c == '{') || (it == ']' && c == '[')){
+                if((s.charAt(i) == ')' && c == '(') || (s.charAt(i) == '}' && c == '{') || (s.charAt(i) == ']' && c == '[')){
                     continue;
             }
                 else{
