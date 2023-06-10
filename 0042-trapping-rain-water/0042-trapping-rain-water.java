@@ -1,19 +1,19 @@
 class Solution {
     public int trap(int[] height) {
-        int ans = 0;
-        int size = height.length;
-        
-        for(int i = 1; i < size - 1; i++){
-            int left_max = 0, right_max = 0;
-            for (int j = i; j >= 0; j--) { //Search the left part for max bar size
-                left_max = Math.max(left_max, height[j]);
+        if (height.length==0) return 0; 
+        int left = 0, right = height.length-1; 
+        int leftMax=0, rightMax=0; 
+        int ans = 0; 
+        while (left < right) {
+            if (height[left] > leftMax) leftMax = height[left]; 
+            if (height[right] > rightMax) rightMax = height[right];
+            if (leftMax < rightMax) {
+                ans += Math.max(0, leftMax-height[left]); 
+                left++; 
+            } else {
+                ans += Math.max(0, rightMax-height[right]); 
+                right--; 
             }
-            
-            for (int j = i; j < size; j++) { //Search the right part for max bar size
-                right_max = Math.max(right_max, height[j]);
-            }
-            
-            ans += Math.min(left_max, right_max) - height[i];
         }
         return ans;
     }
