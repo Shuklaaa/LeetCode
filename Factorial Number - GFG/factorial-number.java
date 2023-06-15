@@ -26,31 +26,16 @@ class GFG
 class Solution{
     static int isFactorial(int N) {
         //code here
-        if (N == 1) {
-            return 1;
+        int factorial = 1;
+        int i = 1;
+        
+        while (factorial < N) {
+            i++;
+            factorial *= i;
         }
         
-        int low = 1;
-        int high = N;
-        
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            int factorial = 1;
-            
-            for (int i = 2; i <= mid; i++) {
-                factorial *= i;
-                
-                if (factorial == N) {
-                    return 1;
-                } else if (factorial > N) {
-                    high = mid - 1;
-                    break;
-                }
-            }
-            
-            if (factorial < N) {
-                low = mid + 1;
-            }
+        if (factorial == N) {
+            return 1;
         }
         
         return 0;
