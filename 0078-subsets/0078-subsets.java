@@ -1,18 +1,19 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> ans = new ArrayList<>();
-        bt(ans, 0, new ArrayList<Integer>(), nums);
+        List<List<Integer>> outer = new ArrayList<>();
+        outer.add(new ArrayList<>());
         
-        return ans;
-    }
-    
-    public void bt(List<List<Integer>> ans, int start, List<Integer> track, int[] nums){
-        ans.add(new ArrayList<Integer>(track));
-        
-        for(int i = start; i < nums.length; i++){
-            track.add(nums[i]);
-            bt(ans, i + 1, track, nums);
-            track.remove(track.size() - 1);
+        for(int num:nums){
+            int n = outer.size();
+            
+            for(int i = 0; i < n; i++){
+                List<Integer> internal=new ArrayList<>(outer.get(i));
+                internal.add(num);
+                outer.add(internal);
+            }
         }
+        return outer;
     }
 }
+
+
