@@ -31,15 +31,8 @@ class GFG {
 class Solution {
     static boolean isBSTTraversal(int nums[]) {
     // code here
-    int prev = Integer.MIN_VALUE;
-    
-    for(int num: nums){
-        if(num <= prev){
-            return false;
-        }
-        prev = num;
-    }
-    
+    int n=nums.length;
+    for(int i=1;i<n;i++) if(nums[i-1]>=nums[i]) return false;
     return true;
   }
 }
